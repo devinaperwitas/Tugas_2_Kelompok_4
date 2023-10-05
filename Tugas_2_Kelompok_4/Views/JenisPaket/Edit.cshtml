@@ -1,0 +1,32 @@
+﻿@model Tugas_2_Kelompok_4.Models.Jenis_paket
+@{
+    ViewData["Title"] = "Edit Paket";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit Jenis Paket</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" asp-controller="JenisPaket" asp-action="Edit">
+                            <input type="hidden" asp-for="id_jenis" />
+                            <div class="form-group">
+                                <label asp-for="nama_jenis" class="control-label">Nama Jenis Paket</label>
+                                <input asp-for="nama_jenis" class="form-control" name="nama_jenis" />
+                                <span asp-validation-for="nama_jenis" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
