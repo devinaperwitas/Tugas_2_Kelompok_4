@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tugas_2_Kelompok_4.Models;
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tugas_2_Kelompok_4.Controllers
 {
     public class PaketController : Controller
     {
         private static List<Paket> pakets = InitializeData();
+        private static int currentId = 1;
 
         private static List<Paket> InitializeData()
         {
@@ -15,21 +17,22 @@ namespace Tugas_2_Kelompok_4.Controllers
             {
                 new Paket
                 {
-                    id = 1,
+                    id = "PKT001",
                     jenis = "Barang",
                     nama_pemilik = "Mukhasim",
                     telp = "085645212341",
-                    tanggal_sampai = new DateOnly(2023, 9, 24)
+                    tanggal_sampai = new DateTime(2023, 9, 24)
                 },
                 new Paket
                 {
-                    id = 2,
+                    id = "PKT002",
                     jenis = "Dokumen",
                     nama_pemilik = "Rafa",
                     telp = "085645212112",
-                    tanggal_sampai = new DateOnly(2023, 9, 24)
+                    tanggal_sampai = new DateTime(2023, 9, 24)
                 }
             };
+            currentId = 3; // Mengatur id berikutnya untuk data yang akan ditambahkan.
             return initialData;
         }
 
@@ -48,20 +51,16 @@ namespace Tugas_2_Kelompok_4.Controllers
         [HttpPost]
         public IActionResult Create(Paket paket)
         {
-
             if (ModelState.IsValid)
             {
-                int new_id = 1;
+                Console.WriteLine(paket.tanggal_sampai);
+                string newId = $"PKT{currentId:D3}"; // Membuat id dengan format PKTXXX
 
-                while (pakets.Any(b => b.id == new_id))
-                {
-                    new_id++;
-                }
-
-                paket.id = new_id;
+                paket.id = newId;
 
                 pakets.Add(paket);
                 TempData["SuccessMessage"] = "Data berhasil ditambahkan";
+                currentId++; // Menambahkan id berikutnya
                 return RedirectToAction("Index");
             }
 
@@ -69,7 +68,7 @@ namespace Tugas_2_Kelompok_4.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var response = new { success = false, message = "Gagal menghapus data." };
 
@@ -95,7 +94,7 @@ namespace Tugas_2_Kelompok_4.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(string id)
         {
             Paket paket = pakets.FirstOrDefault(b => b.id == id);
 
@@ -112,17 +111,17 @@ namespace Tugas_2_Kelompok_4.Controllers
         {
             if (ModelState.IsValid)
             {
-                Paket newPaket = pakets.FirstOrDefault(b => b.id == paket.id);
+                Paket existingPaket = pakets.FirstOrDefault(b => b.id == paket.id);
 
-                if (newPaket == null)
+                if (existingPaket == null)
                 {
                     return NotFound();
                 }
 
-                newPaket.jenis = paket.jenis;
-                newPaket.nama_pemilik = paket.nama_pemilik;
-                newPaket.telp = paket.telp;
-                newPaket.tanggal_sampai = paket.tanggal_sampai;
+                existingPaket.jenis = paket.jenis;
+                existingPaket.nama_pemilik = paket.nama_pemilik;
+                existingPaket.telp = paket.telp;
+                existingPaket.tanggal_sampai = paket.tanggal_sampai;
 
                 TempData["SuccessMessage"] = "Data berhasil diupdate.";
                 return RedirectToAction("Index");

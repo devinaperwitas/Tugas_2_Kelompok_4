@@ -16,7 +16,14 @@
                             <input type="hidden" asp-for="id" />
                             <div class="form-group">
                                 <label asp-for="jenis" class="control-label">Jenis Paket</label>
-                                <input asp-for="jenis" class="form-control" name="jenis" />
+                                <select asp-for="jenis" class="form-control">
+                                    <option value="Barang">Barang</option>
+                                    <option value="Dokumen">Dokumen</option>
+                                    <option value="Hewan">Hewan</option>
+                                    <option value="Tanaman">Tanaman</option>
+
+                                    <!-- Add more options as needed -->
+                                </select>
                                 <span asp-validation-for="jenis" class="text-danger"></span>
                             </div>
                             <div class="form-group">

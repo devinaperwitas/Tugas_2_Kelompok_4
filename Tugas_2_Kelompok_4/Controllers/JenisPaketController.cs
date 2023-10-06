@@ -13,12 +13,12 @@ namespace Tugas_2_Kelompok_4.Controllers
             {
                 new Jenis_paket
                 {
-                    id_jenis = 1,
+                    id_jenis = "JNS001",
                     nama_jenis = "Barang",
                 },
                 new Jenis_paket
                 {
-                    id_jenis = 2,
+                    id_jenis = "JNS002",
                     nama_jenis = "Dokumen",
                 }
             };
@@ -42,14 +42,16 @@ namespace Tugas_2_Kelompok_4.Controllers
         {
             if (ModelState.IsValid)
             {
-                int new_id = 1;
+                int maxId = Jenis_Pakets
+                    .Where(p => p.id_jenis.StartsWith("JNS"))
+                    .Select(p => int.TryParse(p.id_jenis.Replace("JNS", ""), out int num) ? num : 0)
+                    .DefaultIfEmpty()
+                    .Max();
 
-                while (Jenis_Pakets.Any(b => b.id_jenis == new_id))
-                {
-                    new_id++;
-                }
+                int new_id = maxId + 1;
+                string new_id_string = $"JNS{new_id:D3}";
 
-                jenis_paket.id_jenis = new_id;
+                jenis_paket.id_jenis = new_id_string;
 
                 Jenis_Pakets.Add(jenis_paket);
                 TempData["SuccessMessage"] = "Data berhasil ditambahkan";
@@ -60,7 +62,7 @@ namespace Tugas_2_Kelompok_4.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var response = new { success = false, message = "Gagal menghapus data." };
 
@@ -86,7 +88,7 @@ namespace Tugas_2_Kelompok_4.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(string id)
         {
             Jenis_paket jenis_paket = Jenis_Pakets.FirstOrDefault(b => b.id_jenis == id);
 
@@ -103,14 +105,14 @@ namespace Tugas_2_Kelompok_4.Controllers
         {
             if (ModelState.IsValid)
             {
-                Jenis_paket newJenisPaket = Jenis_Pakets.FirstOrDefault(b => b.id_jenis == jenis_paket.id_jenis);
+                Jenis_paket existingJenisPaket = Jenis_Pakets.FirstOrDefault(b => b.id_jenis == jenis_paket.id_jenis);
 
-                if (newJenisPaket == null)
+                if (existingJenisPaket == null)
                 {
                     return NotFound();
                 }
 
-                newJenisPaket.nama_jenis = jenis_paket.nama_jenis;
+                existingJenisPaket.nama_jenis = jenis_paket.nama_jenis;
 
                 TempData["SuccessMessage"] = "Data berhasil diupdate.";
                 return RedirectToAction("Index");

@@ -5,7 +5,7 @@ namespace Tugas_2_Kelompok_4.Models
 {
     public class Paket
     {
-        public int id { get; set; }
+        public string? id { get; set; }
 
 
         [Required(ErrorMessage = "Jenis paket wajib diisi.")]
@@ -24,6 +24,6 @@ namespace Tugas_2_Kelompok_4.Models
 
         [Required(ErrorMessage = "Tanggal sampai wajib diisi.")]
         [DataType(DataType.Date)]
-        public DateOnly tanggal_sampai { get; set; }
+        public DateTime tanggal_sampai { get; set; }
     }
 }
