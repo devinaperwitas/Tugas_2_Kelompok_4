@@ -10,5 +10,6 @@ namespace Tugas_2_Kelompok_4.Models
         [MaxLength(30, ErrorMessage = "Jenis paket maksimal 30 karakter")]
         [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "Jenis paket hanya boleh berisi huruf.")]
         public string nama_jenis { get; set; }
+
     }
 }
