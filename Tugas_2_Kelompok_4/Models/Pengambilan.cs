@@ -2,9 +2,9 @@
 
 namespace Tugas_2_Kelompok_4.Models
 {
-    public class Jenis_paket
+    public class Pengambilan
     {
-        public string id_jenis { get; set; }
+        public int id_jenis { get; set; }
 
         [Required(ErrorMessage = "Jenis paket wajib diisi.")]
         [MaxLength(30, ErrorMessage = "Jenis paket maksimal 30 karakter")]
