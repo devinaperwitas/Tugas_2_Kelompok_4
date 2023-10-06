@@ -10,7 +10,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Master Jenis Paket</h5>
+                    <h5 class="card-title">Transaksi Pengambilan</h5>
                     <hr />
                     @if (TempData["SuccessMessage"] != null)
                     {
@@ -23,31 +23,35 @@
                         </div>
                     }
 
-                    <a class="btn btn-primary" asp-action="Create">Tambah Jenis Paket</a>
+                    <a class="btn btn-primary" asp-action="Create">Tambah Transaksi Pengambilan</a>
                     <!-- Table with stripped rows -->
                     <table class="table datatable">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">ID Paket</th>
-                                <th scope="col">Nama Jenis Paket</th>
+                                <th scope="col">ID Pengambilan</th>
+                                <th scope="col">Jenis Paket</th>
+                                <th scope="col">Nama Pemilik</th>
+                                <th scope="col">Nama Pengambil</th>
+                                <th scope="col">NIM/NPK</th>
+                                <th scope="col">Tanggal Pengambilan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var jenis_paket in Model)
+                            @foreach (var pengambilan in Model)
                             {
                                 <tr>
                                     <td>@(no++)</td>
-                                    <td>@jenis_paket.id_jenis</td>
-                                    <td>@jenis_paket.nama_jenis</td>
+                                    <td>@pengambilan.id_pengambilan</td>
+                                    <td>@pengambilan.nama_jenis</td>
                                     <td>
-                                        <button class="btn btn-sm btn-danger delete-button" data-id="@jenis_paket.id_jenis">
+                                        <button class="btn btn-sm btn-danger delete-button" data-id="@pengambilan.id_jenis">
                                             <i class="fas fa-trash"></i>
                                         </button>
-                                        <a asp-controller="JenisPaket" asp-action="Edit" asp-route-id="@jenis_paket.id_jenis" class="btn btn-sm btn-primary">
+                                        <a asp-controller="JenisPaket" asp-action="Edit" asp-route-id="@pengambilan.id_jenis" class="btn btn-sm btn-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <button class="btn btn-sm btn-info btn-info-modal" data-toggle="modal" data-target="#infoModal_@jenis_paket.id_jenis">
+                                        <button class="btn btn-sm btn-info btn-info-modal" data-toggle="modal" data-target="#infoModal_@pengambilan.id_jenis">
                                             <i class="fas fa-info-circle"></i>
                                         </button>
 

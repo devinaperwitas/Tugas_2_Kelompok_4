@@ -1,7 +1,7 @@
-﻿@model Tugas_2_Kelompok_4.Models.Jenis_paket
+﻿@*@model Tugas_2_Kelompok_4.Models.Pengambilan
 
 @{
-    ViewData["Title"] = "Tambah Jenis Paket";
+    ViewData["Title"] = "Tambah Pengambilan";
 }
 
 <div class="content">
@@ -10,14 +10,44 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Tambah Jenis Paket</h4>
+                        <h4 class="card-title">Tambah Transaksi Pengambilan</h4>
                     </div>
                     <div class="card-body">
-                        <form method="post" asp-controller="JenisPaket" asp-action="Create">
+                        <form method="post" asp-controller="Pengambilan" asp-action="Create">
                             <div class="form-group">
-                                <label asp-for="nama_jenis" class="control-label">Nama Jenis Paket</label>
-                                <input asp-for="nama_jenis" class="form-control" name="nama_jenis" />
-                                <span asp-validation-for="nama_jenis" class="text-danger"></span>
+                                <label asp-for="id" class="control-label">Jenis Paket</label>
+                                <select asp-for="id" class="form-control" name="id">
+                                    <option value="Barang">Barang</option>
+                                    <option value="Dokumen">Dokumen</option>
+
+                                    <!-- Tambahkan jenis paket lainnya sesuai kebutuhan -->
+                                </select>
+                                <span asp-validation-for="id" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="id_paket" class="control-label">Nama Pemilik</label>
+                                <input asp-for="id_paket" class="form-control" name="id_paket" />
+                                <span asp-validation-for="id_paket" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="nama_pengambil" class="control-label">Nama Pengambil</label>
+                                <input asp-for="nama_pengambil" class="form-control" name="nama_pengambil" />
+                                <span asp-validation-for="nama_pengambil" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="nim_npk" class="control-label">NIM/NPK</label>
+                                <input asp-for="nim_npk" class="form-control" name="nim_npk" />
+                                <span asp-validation-for="nim_npk" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="tanggal_pengambilan" class="control-label">Tanggal Pengambilan</label>
+                                <input asp-for="tanggal_pengambilan" class="form-control" type="datetime-local" name="tanggal_pengambilan" />
+                                <span asp-validation-for="tanggal_pengambilan" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="status" class="control-label">Status</label>
+                                <input asp-for="status" class="form-control" name="status" />
+                                <span asp-validation-for="status" class="text-danger"></span>
                             </div>
                             <br />
                             <div class="form-group">
@@ -31,3 +61,9 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var today = new Date().toISOString().split('T')[0];
+        document.querySelector('input[type="date"]').value = today;
+    });
+</script>*@
