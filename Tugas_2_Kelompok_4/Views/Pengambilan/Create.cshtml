@@ -1,4 +1,4 @@
-﻿@*@model Tugas_2_Kelompok_4.Models.Pengambilan
+﻿@model Tugas_2_Kelompok_4.Models.Pengambilan
 
 @{
     ViewData["Title"] = "Tambah Pengambilan";
@@ -15,19 +15,19 @@
                     <div class="card-body">
                         <form method="post" asp-controller="Pengambilan" asp-action="Create">
                             <div class="form-group">
-                                <label asp-for="id" class="control-label">Jenis Paket</label>
-                                <select asp-for="id" class="form-control" name="id">
+                                <label asp-for="jenis" class="control-label">Jenis Paket</label>
+                                <select asp-for="jenis" class="form-control" name="jenis">
                                     <option value="Barang">Barang</option>
                                     <option value="Dokumen">Dokumen</option>
 
                                     <!-- Tambahkan jenis paket lainnya sesuai kebutuhan -->
                                 </select>
-                                <span asp-validation-for="id" class="text-danger"></span>
+                                <span asp-validation-for="jenis" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="id_paket" class="control-label">Nama Pemilik</label>
-                                <input asp-for="id_paket" class="form-control" name="id_paket" />
-                                <span asp-validation-for="id_paket" class="text-danger"></span>
+                                <label asp-for="nama_pemilik" class="control-label">Nama Pemilik</label>
+                                <input asp-for="nama_pemilik" class="form-control" name="nama_pemilik" />
+                                <span asp-validation-for="nama_pemilik" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="nama_pengambil" class="control-label">Nama Pengambil</label>
@@ -44,11 +44,7 @@
                                 <input asp-for="tanggal_pengambilan" class="form-control" type="datetime-local" name="tanggal_pengambilan" />
                                 <span asp-validation-for="tanggal_pengambilan" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="status" class="control-label">Status</label>
-                                <input asp-for="status" class="form-control" name="status" />
-                                <span asp-validation-for="status" class="text-danger"></span>
-                            </div>
+              
                             <br />
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -66,4 +62,4 @@
         var today = new Date().toISOString().split('T')[0];
         document.querySelector('input[type="date"]').value = today;
     });
-</script>*@
+</script>

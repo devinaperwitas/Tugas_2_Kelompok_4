@@ -6,7 +6,7 @@ namespace Tugas_2_Kelompok_4.Controllers
     public class PengambilanController : Controller
     {
         private static List<Pengambilan> pengambilans = InitializeData();
-        private static int currentId = 1;
+        private static int currentId = 3;
 
         private static List<Pengambilan> InitializeData()
         {

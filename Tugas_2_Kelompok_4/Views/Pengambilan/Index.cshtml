@@ -1,6 +1,6 @@
-﻿@model List<Tugas_2_Kelompok_4.Models.Jenis_paket>
+﻿@model List<Tugas_2_Kelompok_4.Models.Pengambilan>
 @{
-    ViewData["Title"] = "Master Jenis Paket";
+    ViewData["Title"] = "Pengambilan Paket";
     int no = 1;
 }
 
@@ -43,29 +43,31 @@
                                 <tr>
                                     <td>@(no++)</td>
                                     <td>@pengambilan.id_pengambilan</td>
-                                    <td>@pengambilan.nama_jenis</td>
+                                    <td>@pengambilan.jenis</td>
+                                    <td>@pengambilan.nama_pemilik</td>
+                                    <td>@pengambilan.nama_pengambil</td>
+                                    <td>@pengambilan.nim_npk</td>
+                                    <td>@pengambilan.tanggal_pengambilan</td>
                                     <td>
-                                        <button class="btn btn-sm btn-danger delete-button" data-id="@pengambilan.id_jenis">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                        <a asp-controller="JenisPaket" asp-action="Edit" asp-route-id="@pengambilan.id_jenis" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-info btn-info-modal" data-toggle="modal" data-target="#infoModal_@pengambilan.id_jenis">
+                                        <button class="btn btn-sm btn-info btn-info-modal" data-toggle="modal" data-target="#infoModal_@pengambilan.id_pengambilan">
                                             <i class="fas fa-info-circle"></i>
                                         </button>
 
-                                        <div class="modal fade" id="infoModal_@jenis_paket.id_jenis" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="infoModal_@pengambilan.id_pengambilan" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Informasi Jenis Paket</h5>
+                                                        <h5 class="modal-title">Informasi Pengambilan</h5>
                                                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <strong>Id:</strong> @jenis_paket.id_jenis<br />
-                                                        <strong>Nama Jenis Paket:</strong> @jenis_paket.nama_jenis<br />
+                                                        <strong>Id Pengambilan:</strong> @pengambilan.id_pengambilan<br />
+                                                        <strong>Jenis Paket:</strong> @pengambilan.jenis<br />
+                                                        <strong>Nama Pemilik:</strong> @pengambilan.nama_pemilik<br />
+                                                        <strong>Nama Pengambil:</strong> @pengambilan.nama_pengambil<br />
+                                                        <strong>NIM/NPK:</strong> @pengambilan.nim_npk<br />
+                                                        <strong>Tanggal Pengambilan:</strong> @pengambilan.tanggal_pengambilan<br />
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -85,41 +87,4 @@
         </div>
     </div>
 </section>
-
-<script>
-    $(document).ready(function () {
-        $(".delete-button").click(function () {
-            var jenispaketId = $(this).data("id");
-
-            swal({
-                title: "Hapus Paket?",
-                text: "Apakah Anda yakin ingin menghapus data ini?",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    // Mengirimkan permintaan penghapusan ke controller
-                    $.ajax({
-                        url: "/JenisPaket/Delete/" + jenispaketId,
-                        type: "POST",
-                        success: function (data) {
-                            // Tampilkan pesan sukses jika diperlukan
-                            if (data.success) {
-                                swal("Sukses!", data.message, "success");
-                                // Refresh halaman setelah menghapus
-                                location.reload();
-                            } else {
-                                swal("Gagal!", data.message, "error");
-                            }
-                        },
-                        error: function () {
-                            swal("Error!", "Terjadi kesalahan saat menghapus data.", "error");
-                        }
-                    });
-                }
-            });
-        });
-    });
-</script>
 
