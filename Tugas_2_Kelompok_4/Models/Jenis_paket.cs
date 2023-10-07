@@ -8,7 +8,7 @@ namespace Tugas_2_Kelompok_4.Models
 
         [Required(ErrorMessage = "Jenis paket wajib diisi.")]
         [MaxLength(30, ErrorMessage = "Jenis paket maksimal 30 karakter")]
-        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "Jenis paket hanya boleh berisi huruf.")]
+        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "Jenis paket hanya memungkinkan huruf, spasi, dan backspace.")]
         public string nama_jenis { get; set; }
 
     }
