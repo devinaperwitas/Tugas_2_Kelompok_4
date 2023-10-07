@@ -9,7 +9,7 @@ namespace Tugas_2_Kelompok_4.Controllers
     public class PaketController : Controller
     {
         private static List<Paket> pakets = InitializeData();
-        private static int currentId = 1;
+        private static int currentId = 3;
 
         private static List<Paket> InitializeData()
         {
@@ -32,7 +32,7 @@ namespace Tugas_2_Kelompok_4.Controllers
                     tanggal_sampai = new DateTime(2023, 9, 24)
                 }
             };
-            currentId = 3; // Mengatur id berikutnya untuk data yang akan ditambahkan.
+            currentId = 3; 
             return initialData;
         }
 
